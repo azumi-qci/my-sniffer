@@ -137,7 +137,48 @@ namespace MySniffer
                 ipDestinationHexTb.Text = package.getDestinationIPHex() + " (HEX)";
                 ipOriginDecTb.Text = package.getOriginIPDec() + " (DEC)";
                 ipDestinationDecTb.Text = package.getDestinationIPDec() + " (DEC)";
+
+                // Active TCP button
+                showTCPInfoBtn.Enabled = true;
             }
+        }
+
+        private void showTCPInfoBtn_Click(object sender, EventArgs e)
+        {
+            TCPInfo tcpInfo = new TCPInfo(this);
+            tcpInfo.ShowDialog();
+        }
+
+        /* TCP methods */
+
+        public string getTCPOriginPort()
+        {
+            return this.package.getOriginPortHex() + ", " + this.package.getOriginPortDec();
+        }
+
+        public string getTCPDestinationPort()
+        {
+            return this.package.getDestinationPortHex() + ", " + this.package.getDestinationPortDec();
+        }
+
+        public string getTCPSequenceNumberRaw()
+        {
+            return this.package.getSequenceNumberHex() + ", " + this.package.getSequenceNumberDec();
+        }
+
+        public string getTCPConfirmationNumberRaw()
+        {
+            return this.package.getConfirmationNumberHex() + ", " + this.package.getConfirmationNumberDec();
+        }
+
+        public string getTCPHeaderLength()
+        {
+            return this.package.getTCPHeaderLength();
+        }
+
+        public string getTCPReservedBits()
+        {
+            return this.package.getTCPReservedBits();
         }
     }
 }

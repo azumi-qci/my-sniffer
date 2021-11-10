@@ -77,7 +77,7 @@ namespace MySniffer
             this.ipOriginHexTb = new System.Windows.Forms.TextBox();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.checksumResultTb = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.showTCPInfoBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -561,21 +561,24 @@ namespace MySniffer
             this.checksumResultTb.Size = new System.Drawing.Size(380, 26);
             this.checksumResultTb.TabIndex = 1;
             // 
-            // button1
+            // showTCPInfoBtn
             // 
-            this.button1.Location = new System.Drawing.Point(416, 420);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(380, 45);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.showTCPInfoBtn.Enabled = false;
+            this.showTCPInfoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.showTCPInfoBtn.Location = new System.Drawing.Point(416, 420);
+            this.showTCPInfoBtn.Name = "showTCPInfoBtn";
+            this.showTCPInfoBtn.Size = new System.Drawing.Size(380, 45);
+            this.showTCPInfoBtn.TabIndex = 12;
+            this.showTCPInfoBtn.Text = "Ver cabecera TCP";
+            this.showTCPInfoBtn.UseVisualStyleBackColor = true;
+            this.showTCPInfoBtn.Click += new System.EventHandler(this.showTCPInfoBtn_Click);
             // 
             // PackageAnalizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 648);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.showTCPInfoBtn);
             this.Controls.Add(this.groupBox21);
             this.Controls.Add(this.groupBox19);
             this.Controls.Add(this.groupBox18);
@@ -598,10 +601,11 @@ namespace MySniffer
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "PackageAnalizer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Analizar paquete - Alejandro Suárez";
+            this.Text = "Cabecera Ethernet | Mi sniffer";
             this.Load += new System.EventHandler(this.PackageAnalizer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -700,6 +704,6 @@ namespace MySniffer
         private System.Windows.Forms.TextBox ipOriginHexTb;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.TextBox checksumResultTb;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button showTCPInfoBtn;
     }
 }

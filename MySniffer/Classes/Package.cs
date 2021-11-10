@@ -225,5 +225,81 @@ namespace MySniffer.Classes
 
             return string.Join(".", ipDataDec);
         }
+
+        public string getOriginPortHex()
+        {
+            return "0x" + string.Join("", this.data.Skip(35).Take(2));
+        }
+
+        public string getOriginPortDec()
+        {
+            string port = string.Join("", this.data.Skip(35).Take(2));
+
+            return Convert.ToString(Convert.ToInt32(port, 16), 10);
+        }
+
+        public string getDestinationPortHex()
+        {
+            return "0x" + string.Join("", this.data.Skip(37).Take(2));
+        }
+
+        public string getDestinationPortDec()
+        {
+            string port = string.Join("", this.data.Skip(37).Take(2));
+
+            return Convert.ToString(Convert.ToInt32(port, 16), 10);
+        }
+
+        public string getSequenceNumberHex()
+        {
+            return "0x" + string.Join("", this.data.Skip(39).Take(4));
+        }
+
+        public string getSequenceNumberDec()
+        {
+            string sequence = string.Join("", this.data.Skip(39).Take(4));
+
+            return Convert.ToString(Convert.ToInt32(sequence, 16), 10);
+        }
+
+        public string getConfirmationNumberHex()
+        {
+            return "0x" + string.Join("", this.data.Skip(43).Take(4));
+        }
+
+        public string getConfirmationNumberDec()
+        {
+            string confirmation = string.Join("", this.data.Skip(43).Take(4));
+
+            return Convert.ToString(Convert.ToInt32(confirmation, 16), 10);
+        }
+
+        public string getTCPHeaderLength()
+        {
+            string hexData = string.Join("", this.data.Skip(47).Take(1));
+            string binayData = Convert.ToString(Convert.ToInt32(hexData, 16), 2);
+
+            // Fill with zeroes
+            binayData = binayData.PadLeft(8, '0').Substring(0, 4);
+
+            int decData = Convert.ToInt32(binayData, 2);
+            int headerLength = decData * 4;
+
+            return string.Format("{0} ({1}x4 = {2} bytes)", binayData, decData, headerLength);
+        }
+
+        public string getTCPReservedBits()
+        {
+            string hexData = string.Join("", this.data.Skip(47).Take(1));
+            string binayData = Convert.ToString(Convert.ToInt32(hexData, 16), 2);
+
+            string secondHexData = string.Join("", this.data.Skip(48).Take(1));
+            string secondBinaryData = Convert.ToString(Convert.ToInt32(secondHexData, 16), 2);
+
+            // Fill with zeroes
+            binayData = binayData.PadLeft(8, '0').Substring(4, 4) + secondBinaryData.PadLeft(8, '0').Substring(0, 2);
+
+            return binayData;
+        }
     }
 }

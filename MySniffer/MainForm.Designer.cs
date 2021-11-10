@@ -74,10 +74,11 @@ namespace MySniffer
             this.Controls.Add(this.exitBtn);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.packageBtn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SEM | Sniffer - Alejandro Suárez";
+            this.Text = "Mi sniffer | Alejandro Suárez";
             this.ResumeLayout(false);
 
         }
