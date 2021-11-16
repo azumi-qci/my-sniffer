@@ -153,32 +153,63 @@ namespace MySniffer
 
         public string getTCPOriginPort()
         {
-            return this.package.getOriginPortHex() + ", " + this.package.getOriginPortDec();
+            return package.getOriginPortHex() + ", " + package.getOriginPortDec();
         }
 
         public string getTCPDestinationPort()
         {
-            return this.package.getDestinationPortHex() + ", " + this.package.getDestinationPortDec();
+            return package.getDestinationPortHex() + ", " + package.getDestinationPortDec();
         }
 
         public string getTCPSequenceNumberRaw()
         {
-            return this.package.getSequenceNumberHex() + ", " + this.package.getSequenceNumberDec();
+            return package.getSequenceNumberHex() + ", " + package.getSequenceNumberDec();
         }
 
         public string getTCPConfirmationNumberRaw()
         {
-            return this.package.getConfirmationNumberHex() + ", " + this.package.getConfirmationNumberDec();
+            return package.getConfirmationNumberHex() + ", " + package.getConfirmationNumberDec();
         }
 
         public string getTCPHeaderLength()
         {
-            return this.package.getTCPHeaderLength();
+            return package.getTCPHeaderLength();
         }
 
         public string getTCPReservedBits()
         {
-            return this.package.getTCPReservedBits();
+            return package.getTCPReservedBits();
+        }
+
+        public string getTCPFlags()
+        {
+            return "0x" + package.getTCPFlags() + " - " + package.getTCPFlags(true);
+        }
+
+        public string getTCPReservedFlag()
+        {
+            return package.getTCPReservedFlag();
+        }
+
+        public string getTCPNonceFlag()
+        {
+            string value = package.getTCPNonceFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPCWRFlag()
+        {
+            string value = package.getTCPCWRFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPECNFlag()
+        {
+            string value = package.getTCPECNFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
         }
     }
 }

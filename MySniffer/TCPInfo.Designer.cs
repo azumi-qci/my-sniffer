@@ -47,6 +47,16 @@ namespace MySniffer
             this.headerLengthTb = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.reservedBitsTb = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nonceFlagTb = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.reservedFlagTb = new System.Windows.Forms.TextBox();
+            this.tcpFlagsTb = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.ecnFlagTb = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cwrFlagTb = new System.Windows.Forms.TextBox();
             this.groupBox17.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -55,6 +65,7 @@ namespace MySniffer
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox17
@@ -229,11 +240,111 @@ namespace MySniffer
             this.reservedBitsTb.Size = new System.Drawing.Size(181, 26);
             this.reservedBitsTb.TabIndex = 1;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label3);
+            this.groupBox8.Controls.Add(this.ecnFlagTb);
+            this.groupBox8.Controls.Add(this.label4);
+            this.groupBox8.Controls.Add(this.cwrFlagTb);
+            this.groupBox8.Controls.Add(this.label2);
+            this.groupBox8.Controls.Add(this.nonceFlagTb);
+            this.groupBox8.Controls.Add(this.label1);
+            this.groupBox8.Controls.Add(this.reservedFlagTb);
+            this.groupBox8.Controls.Add(this.tcpFlagsTb);
+            this.groupBox8.Location = new System.Drawing.Point(410, 12);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(392, 203);
+            this.groupBox8.TabIndex = 16;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Banderas";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(202, 53);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Nonce";
+            // 
+            // nonceFlagTb
+            // 
+            this.nonceFlagTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nonceFlagTb.Location = new System.Drawing.Point(205, 69);
+            this.nonceFlagTb.Name = "nonceFlagTb";
+            this.nonceFlagTb.ReadOnly = true;
+            this.nonceFlagTb.Size = new System.Drawing.Size(181, 26);
+            this.nonceFlagTb.TabIndex = 18;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 53);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Reservado";
+            // 
+            // reservedFlagTb
+            // 
+            this.reservedFlagTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reservedFlagTb.Location = new System.Drawing.Point(6, 69);
+            this.reservedFlagTb.Name = "reservedFlagTb";
+            this.reservedFlagTb.ReadOnly = true;
+            this.reservedFlagTb.Size = new System.Drawing.Size(181, 26);
+            this.reservedFlagTb.TabIndex = 2;
+            // 
+            // tcpFlagsTb
+            // 
+            this.tcpFlagsTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcpFlagsTb.Location = new System.Drawing.Point(6, 19);
+            this.tcpFlagsTb.Name = "tcpFlagsTb";
+            this.tcpFlagsTb.ReadOnly = true;
+            this.tcpFlagsTb.Size = new System.Drawing.Size(380, 26);
+            this.tcpFlagsTb.TabIndex = 1;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(202, 101);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "ECN-Echo";
+            // 
+            // ecnFlagTb
+            // 
+            this.ecnFlagTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ecnFlagTb.Location = new System.Drawing.Point(205, 117);
+            this.ecnFlagTb.Name = "ecnFlagTb";
+            this.ecnFlagTb.ReadOnly = true;
+            this.ecnFlagTb.Size = new System.Drawing.Size(181, 26);
+            this.ecnFlagTb.TabIndex = 22;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 101);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "CWR";
+            // 
+            // cwrFlagTb
+            // 
+            this.cwrFlagTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cwrFlagTb.Location = new System.Drawing.Point(6, 117);
+            this.cwrFlagTb.Name = "cwrFlagTb";
+            this.cwrFlagTb.ReadOnly = true;
+            this.cwrFlagTb.Size = new System.Drawing.Size(181, 26);
+            this.cwrFlagTb.TabIndex = 20;
+            // 
             // TCPInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(813, 289);
+            this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox4);
@@ -265,6 +376,8 @@ namespace MySniffer
             this.groupBox6.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -289,5 +402,15 @@ namespace MySniffer
         private System.Windows.Forms.TextBox headerLengthTb;
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.TextBox reservedBitsTb;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox tcpFlagsTb;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox nonceFlagTb;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox reservedFlagTb;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox ecnFlagTb;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox cwrFlagTb;
     }
 }

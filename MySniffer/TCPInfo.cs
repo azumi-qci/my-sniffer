@@ -24,6 +24,12 @@ namespace MySniffer
 
             headerLengthTb.Text = this.packageAnalizer.getTCPHeaderLength();
             reservedBitsTb.Text = this.packageAnalizer.getTCPReservedBits();
+
+            tcpFlagsTb.Text = this.packageAnalizer.getTCPFlags();
+            reservedFlagTb.Text = this.packageAnalizer.getTCPReservedFlag();
+            nonceFlagTb.Text = this.packageAnalizer.getTCPNonceFlag();
+            cwrFlagTb.Text = this.packageAnalizer.getTCPCWRFlag();
+            ecnFlagTb.Text = this.packageAnalizer.getTCPECNFlag();
         }
     }
 }

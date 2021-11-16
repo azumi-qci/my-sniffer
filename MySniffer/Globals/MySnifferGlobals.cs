@@ -83,5 +83,11 @@ namespace MySniffer.Globals
             { 17, "UDP (User Datagram)" },
             { 89, "OSPF (Open Shortest Path First)" }
         };
+
+        public static Dictionary<string, string> setFlags = new Dictionary<string, string>()
+        {
+            { "0", "Sin establecer" },
+            { "1", "Establecido" }
+        };
     }
 }
