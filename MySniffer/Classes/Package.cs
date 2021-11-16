@@ -337,5 +337,35 @@ namespace MySniffer.Classes
         {
             return getTCPFlags(true).Substring(5, 1);
         }
+
+        public string getTCPURGFlag()
+        {
+            return getTCPFlags(true).Substring(6, 1);
+        }
+
+        public string getTCPACKFlag()
+        {
+            return getTCPFlags(true).Substring(7, 1);
+        }
+
+        public string getTCPPSHFlag()
+        {
+            return getTCPFlags(true).Substring(8, 1);
+        }
+
+        public string getTCPRSTFlag()
+        {
+            return getTCPFlags(true).Substring(9, 1);
+        }
+
+        public string getTCPSYNFlag()
+        {
+            return getTCPFlags(true).Substring(10, 1);
+        }
+
+        public string getTCPFINFlag()
+        {
+            return getTCPFlags(true).Substring(11, 1);
+        }
     }
 }

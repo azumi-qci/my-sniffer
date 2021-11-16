@@ -211,5 +211,47 @@ namespace MySniffer
 
             return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
         }
+
+        public string getTCPURGFlag()
+        {
+            string value = package.getTCPURGFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPACKFlag()
+        {
+            string value = package.getTCPACKFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPPSHFlag()
+        {
+            string value = package.getTCPPSHFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPRSTFlag()
+        {
+            string value = package.getTCPRSTFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPSYNFlag()
+        {
+            string value = package.getTCPSYNFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
+
+        public string getTCPFINFlag()
+        {
+            string value = package.getTCPFINFlag();
+
+            return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
+        }
     }
 }
