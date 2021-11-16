@@ -69,6 +69,10 @@ namespace MySniffer
             this.label1 = new System.Windows.Forms.Label();
             this.reservedFlagTb = new System.Windows.Forms.TextBox();
             this.tcpFlagsTb = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.windowSizeTb = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.verifiedChecksumTb = new System.Windows.Forms.TextBox();
             this.groupBox17.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -78,6 +82,8 @@ namespace MySniffer
             this.groupBox6.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox17
@@ -141,7 +147,7 @@ namespace MySniffer
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 101);
+            this.groupBox2.Location = new System.Drawing.Point(12, 113);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(193, 54);
             this.groupBox2.TabIndex = 11;
@@ -160,7 +166,7 @@ namespace MySniffer
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.sequenceNumberRawTb);
-            this.groupBox3.Location = new System.Drawing.Point(211, 101);
+            this.groupBox3.Location = new System.Drawing.Point(211, 113);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(193, 54);
             this.groupBox3.TabIndex = 12;
@@ -179,7 +185,7 @@ namespace MySniffer
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.confirmationNumberRawTb);
-            this.groupBox4.Location = new System.Drawing.Point(211, 161);
+            this.groupBox4.Location = new System.Drawing.Point(211, 185);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(193, 54);
             this.groupBox4.TabIndex = 14;
@@ -198,7 +204,7 @@ namespace MySniffer
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.textBox4);
-            this.groupBox5.Location = new System.Drawing.Point(12, 161);
+            this.groupBox5.Location = new System.Drawing.Point(12, 185);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(193, 54);
             this.groupBox5.TabIndex = 13;
@@ -217,7 +223,7 @@ namespace MySniffer
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.headerLengthTb);
-            this.groupBox6.Location = new System.Drawing.Point(12, 221);
+            this.groupBox6.Location = new System.Drawing.Point(12, 259);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(193, 54);
             this.groupBox6.TabIndex = 15;
@@ -236,7 +242,7 @@ namespace MySniffer
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.reservedBitsTb);
-            this.groupBox7.Location = new System.Drawing.Point(211, 221);
+            this.groupBox7.Location = new System.Drawing.Point(211, 259);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(193, 54);
             this.groupBox7.TabIndex = 16;
@@ -471,11 +477,51 @@ namespace MySniffer
             this.tcpFlagsTb.Size = new System.Drawing.Size(380, 26);
             this.tcpFlagsTb.TabIndex = 1;
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.windowSizeTb);
+            this.groupBox9.Location = new System.Drawing.Point(808, 12);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(193, 54);
+            this.groupBox9.TabIndex = 17;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Tamaño de ventana";
+            // 
+            // windowSizeTb
+            // 
+            this.windowSizeTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.windowSizeTb.Location = new System.Drawing.Point(6, 19);
+            this.windowSizeTb.Name = "windowSizeTb";
+            this.windowSizeTb.ReadOnly = true;
+            this.windowSizeTb.Size = new System.Drawing.Size(181, 26);
+            this.windowSizeTb.TabIndex = 1;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.verifiedChecksumTb);
+            this.groupBox10.Location = new System.Drawing.Point(809, 72);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(193, 54);
+            this.groupBox10.TabIndex = 18;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Checksum (Verificado)";
+            // 
+            // verifiedChecksumTb
+            // 
+            this.verifiedChecksumTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verifiedChecksumTb.Location = new System.Drawing.Point(6, 19);
+            this.verifiedChecksumTb.Name = "verifiedChecksumTb";
+            this.verifiedChecksumTb.ReadOnly = true;
+            this.verifiedChecksumTb.Size = new System.Drawing.Size(181, 26);
+            this.verifiedChecksumTb.TabIndex = 1;
+            // 
             // TCPInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 325);
+            this.ClientSize = new System.Drawing.Size(1014, 325);
+            this.Controls.Add(this.groupBox10);
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox6);
@@ -510,6 +556,10 @@ namespace MySniffer
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -556,5 +606,9 @@ namespace MySniffer
         private System.Windows.Forms.TextBox finFlagTb;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox synFlagTb;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.TextBox windowSizeTb;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.TextBox verifiedChecksumTb;
     }
 }

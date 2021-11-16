@@ -367,5 +367,21 @@ namespace MySniffer.Classes
         {
             return getTCPFlags(true).Substring(11, 1);
         }
+
+        public string getTCPWindowSize()
+        {
+            string hexData = string.Join("", data.Skip(49).Take(2));
+
+            string decimalData = Convert.ToString(Convert.ToInt32(hexData, 16), 10);
+
+            return string.Format("0x{0} - {1}", hexData, decimalData);
+        }
+
+        public string getTCPVerifiedChecksum()
+        {
+            string hexData = string.Join("", data.Skip(51).Take(2));
+
+            return string.Format("0x{0}", hexData);
+        }
     }
 }

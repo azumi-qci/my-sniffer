@@ -253,5 +253,15 @@ namespace MySniffer
 
             return string.Format("{0} ({1})", value, MySnifferGlobals.setFlags[value]);
         }
+
+        public string getTCPWindowSize()
+        {
+            return package.getTCPWindowSize();
+        }
+
+        public string getTCPVerifiedChecksum()
+        {
+            return package.getTCPVerifiedChecksum();
+        }
     }
 }
