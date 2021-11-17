@@ -7,6 +7,8 @@ namespace MySniffer
 {
     public partial class SelectInterface : Form
     {
+        public int selectedIndex = 0;
+
         public SelectInterface()
         {
             InitializeComponent();
@@ -26,8 +28,25 @@ namespace MySniffer
             {
                 LivePacketDevice device = allDevices[i];
 
-                Console.WriteLine("Nombre: " + device.Name);
+                // Add all interfaces to combo box
+                interfacesCb.Items.Add(device.Name);
             }
+        }
+
+        private void interfacesCb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!selectInterfaceBtn.Enabled)
+            {
+                selectInterfaceBtn.Enabled = true;
+            }
+        }
+
+        private void selectInterfaceBtn_Click(object sender, EventArgs e)
+        {
+            selectedIndex = interfacesCb.SelectedIndex;
+            // Open package capture window
+            PackageCapture packageCapture = new PackageCapture(this);
+            packageCapture.ShowDialog();
         }
     }
 }
