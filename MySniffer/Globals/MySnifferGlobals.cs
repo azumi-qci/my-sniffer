@@ -89,5 +89,30 @@ namespace MySniffer.Globals
             { "0", "Sin establecer" },
             { "1", "Establecido" }
         };
+
+        public static Dictionary<string, string> mostCommonPorts = new Dictionary<string, string>()
+        {
+            { "80", "HTTP" },
+            { "443", "HTTPS" },
+            { "21", "FTP" },
+            { "22", "FTPS/SSH" },
+            { "110", "POP3" },
+            { "995", "POP3 SSL" },
+            { "143", "IMAP" },
+            { "993", "IMAP SSL" },
+            { "25", "SMTP" },
+            { "587", "SMTP SSL" },
+            { "3306", "MySQL" },
+            { "2082", "CPanel" },
+            { "2083", "CPanel SSL" },
+            { "2086", "WHM (Webhost Manager)" },
+            { "2087", "WHM (Webhost Manager) SSL" },
+            { "2095", "Webmail" },
+            { "2096", "Webmail SSL" },
+            { "2077", "WebDAV/WebDisk" },
+            { "2278", "WebDAV/WebDisk SSL" },
+            { "139", "NETBIOS Session Service" },
+            { "1031", "Computer Assosiated FTP Server" }
+        };
     }
 }

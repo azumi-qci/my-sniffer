@@ -305,7 +305,7 @@ namespace MySniffer
             // groupBox11
             // 
             this.groupBox11.Controls.Add(this.packageLengthTb);
-            this.groupBox11.Location = new System.Drawing.Point(12, 566);
+            this.groupBox11.Location = new System.Drawing.Point(410, 12);
             this.groupBox11.Name = "groupBox11";
             this.groupBox11.Size = new System.Drawing.Size(193, 53);
             this.groupBox11.TabIndex = 6;
@@ -324,7 +324,7 @@ namespace MySniffer
             // groupBox12
             // 
             this.groupBox12.Controls.Add(this.packageIdentificationTb);
-            this.groupBox12.Location = new System.Drawing.Point(211, 566);
+            this.groupBox12.Location = new System.Drawing.Point(609, 12);
             this.groupBox12.Name = "groupBox12";
             this.groupBox12.Size = new System.Drawing.Size(193, 53);
             this.groupBox12.TabIndex = 7;
@@ -346,7 +346,7 @@ namespace MySniffer
             this.groupBox13.Controls.Add(this.moreFragmentsTb);
             this.groupBox13.Controls.Add(this.dontFragmentTb);
             this.groupBox13.Controls.Add(this.reservedTb);
-            this.groupBox13.Location = new System.Drawing.Point(410, 12);
+            this.groupBox13.Location = new System.Drawing.Point(409, 71);
             this.groupBox13.Name = "groupBox13";
             this.groupBox13.Size = new System.Drawing.Size(392, 84);
             this.groupBox13.TabIndex = 7;
@@ -392,7 +392,7 @@ namespace MySniffer
             // groupBox14
             // 
             this.groupBox14.Controls.Add(this.fragmentationTb);
-            this.groupBox14.Location = new System.Drawing.Point(410, 102);
+            this.groupBox14.Location = new System.Drawing.Point(409, 161);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(193, 51);
             this.groupBox14.TabIndex = 5;
@@ -411,7 +411,7 @@ namespace MySniffer
             // groupBox15
             // 
             this.groupBox15.Controls.Add(this.lifetimeTb);
-            this.groupBox15.Location = new System.Drawing.Point(609, 102);
+            this.groupBox15.Location = new System.Drawing.Point(608, 161);
             this.groupBox15.Name = "groupBox15";
             this.groupBox15.Size = new System.Drawing.Size(193, 51);
             this.groupBox15.TabIndex = 6;
@@ -430,7 +430,7 @@ namespace MySniffer
             // groupBox16
             // 
             this.groupBox16.Controls.Add(this.protocolTb);
-            this.groupBox16.Location = new System.Drawing.Point(410, 159);
+            this.groupBox16.Location = new System.Drawing.Point(409, 218);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(392, 51);
             this.groupBox16.TabIndex = 7;
@@ -449,7 +449,7 @@ namespace MySniffer
             // groupBox17
             // 
             this.groupBox17.Controls.Add(this.checksumVerifiedTb);
-            this.groupBox17.Location = new System.Drawing.Point(410, 216);
+            this.groupBox17.Location = new System.Drawing.Point(409, 275);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(193, 51);
             this.groupBox17.TabIndex = 8;
@@ -468,7 +468,7 @@ namespace MySniffer
             // groupBox18
             // 
             this.groupBox18.Controls.Add(this.checksumCalculatedTb);
-            this.groupBox18.Location = new System.Drawing.Point(609, 216);
+            this.groupBox18.Location = new System.Drawing.Point(608, 275);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(193, 51);
             this.groupBox18.TabIndex = 9;
@@ -488,7 +488,7 @@ namespace MySniffer
             // 
             this.groupBox19.Controls.Add(this.ipDestinationDecTb);
             this.groupBox19.Controls.Add(this.ipDestinationHexTb);
-            this.groupBox19.Location = new System.Drawing.Point(609, 330);
+            this.groupBox19.Location = new System.Drawing.Point(608, 389);
             this.groupBox19.Name = "groupBox19";
             this.groupBox19.Size = new System.Drawing.Size(193, 82);
             this.groupBox19.TabIndex = 11;
@@ -517,7 +517,7 @@ namespace MySniffer
             // 
             this.groupBox20.Controls.Add(this.ipOriginDecTb);
             this.groupBox20.Controls.Add(this.ipOriginHexTb);
-            this.groupBox20.Location = new System.Drawing.Point(410, 330);
+            this.groupBox20.Location = new System.Drawing.Point(409, 389);
             this.groupBox20.Name = "groupBox20";
             this.groupBox20.Size = new System.Drawing.Size(193, 82);
             this.groupBox20.TabIndex = 10;
@@ -545,7 +545,7 @@ namespace MySniffer
             // groupBox21
             // 
             this.groupBox21.Controls.Add(this.checksumResultTb);
-            this.groupBox21.Location = new System.Drawing.Point(410, 273);
+            this.groupBox21.Location = new System.Drawing.Point(409, 332);
             this.groupBox21.Name = "groupBox21";
             this.groupBox21.Size = new System.Drawing.Size(392, 51);
             this.groupBox21.TabIndex = 9;
@@ -565,9 +565,9 @@ namespace MySniffer
             // 
             this.showTCPInfoBtn.Enabled = false;
             this.showTCPInfoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.showTCPInfoBtn.Location = new System.Drawing.Point(416, 420);
+            this.showTCPInfoBtn.Location = new System.Drawing.Point(409, 477);
             this.showTCPInfoBtn.Name = "showTCPInfoBtn";
-            this.showTCPInfoBtn.Size = new System.Drawing.Size(380, 45);
+            this.showTCPInfoBtn.Size = new System.Drawing.Size(386, 83);
             this.showTCPInfoBtn.TabIndex = 12;
             this.showTCPInfoBtn.Text = "Ver cabecera TCP";
             this.showTCPInfoBtn.UseVisualStyleBackColor = true;
@@ -577,7 +577,7 @@ namespace MySniffer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(813, 648);
+            this.ClientSize = new System.Drawing.Size(813, 568);
             this.Controls.Add(this.showTCPInfoBtn);
             this.Controls.Add(this.groupBox21);
             this.Controls.Add(this.groupBox19);

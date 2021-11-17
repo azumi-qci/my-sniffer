@@ -17,10 +17,14 @@ namespace MySniffer
         private void TCPInfo_Load(object sender, System.EventArgs e)
         {
             originPortTb.Text = packageAnalizer.getTCPOriginPort();
+            originPortNameTb.Text = packageAnalizer.getTCPOriginPortName();
             destinationPortTb.Text = packageAnalizer.getTCPDestinationPort();
+            destinationPortNameTb.Text = packageAnalizer.getTCPDestinationPortName();
 
             sequenceNumberRawTb.Text = packageAnalizer.getTCPSequenceNumberRaw();
             confirmationNumberRawTb.Text = packageAnalizer.getTCPConfirmationNumberRaw();
+            sequenceNumberRelativeTb.Text = packageAnalizer.getTCPSequenceNumber().ToString();
+            confirmationNumberRelativeTb.Text = packageAnalizer.getTCPConfirmationNumber().ToString();
 
             headerLengthTb.Text = packageAnalizer.getTCPHeaderLength();
             reservedBitsTb.Text = packageAnalizer.getTCPReservedBits();
@@ -40,6 +44,8 @@ namespace MySniffer
 
             windowSizeTb.Text = packageAnalizer.getTCPWindowSize();
             verifiedChecksumTb.Text = packageAnalizer.getTCPVerifiedChecksum();
+            urgentTb.Text = packageAnalizer.getTCPUrgent();
+            optionsTb.Text = packageAnalizer.getTCPOptions();
         }
     }
 }

@@ -156,9 +156,37 @@ namespace MySniffer
             return package.getOriginPortHex() + " - " + package.getOriginPortDec();
         }
 
+        public string getTCPOriginPortName()
+        {
+            string value;
+
+            if (MySnifferGlobals.mostCommonPorts.TryGetValue(package.getOriginPortDec(), out value))
+            {
+                return value;
+            }
+            else
+            {
+                return "Desconocido";
+            }
+        }
+
         public string getTCPDestinationPort()
         {
             return package.getDestinationPortHex() + " - " + package.getDestinationPortDec();
+        }
+
+        public string getTCPDestinationPortName()
+        {
+            string value;
+
+            if (MySnifferGlobals.mostCommonPorts.TryGetValue(package.getDestinationPortDec(), out value))
+            {
+                return value;
+            }
+            else
+            {
+                return "Desconocido";
+            }
         }
 
         public string getTCPSequenceNumberRaw()
@@ -262,6 +290,35 @@ namespace MySniffer
         public string getTCPVerifiedChecksum()
         {
             return package.getTCPVerifiedChecksum();
+        }
+
+        public int getTCPSequenceNumber()
+        {
+            return package.getTCPSequenceNumberData();
+        }
+
+        public int getTCPConfirmationNumber()
+        {
+            return package.getTCPConfirmationNumberData();
+        }
+
+        public string getTCPUrgent()
+        {
+            string data = package.getTCPUrgent();
+
+            int urgent = Convert.ToInt32(data, 16);
+
+            if (urgent > 0)
+            {
+                return string.Format("{0} - Urgente", data);
+            }
+
+            return string.Format("{0} - No urgente", data);
+        }
+
+        public string getTCPOptions()
+        {
+            return package.getTCPOptions();
         }
     }
 }

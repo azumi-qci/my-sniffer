@@ -383,5 +383,45 @@ namespace MySniffer.Classes
 
             return string.Format("0x{0}", hexData);
         }
+
+        public int getTCPSequenceNumberData()
+        {
+            string sequence = getSequenceNumberHex().Substring(2, 1);
+            string synFlag = getTCPSYNFlag();
+
+            if (synFlag == "1")
+            {
+                return Convert.ToInt32(sequence) + 1;
+            }
+
+            return Convert.ToInt32(sequence);
+        }
+
+        public int getTCPConfirmationNumberData()
+        {
+            string confirmation = getConfirmationNumberHex().Substring(2, 1);
+            string ackFlag = getTCPACKFlag();
+
+            if (ackFlag == "1")
+            {
+                return Convert.ToInt32(confirmation) + 1;
+            }
+
+            return Convert.ToInt32(confirmation);
+        }
+
+        public string getTCPUrgent()
+        {
+            string urgentPoint = string.Join("", data.Skip(53).Take(2));
+
+            return string.Format("0x{0}", urgentPoint);
+        }
+
+        public string getTCPOptions()
+        {
+            string options = string.Join(" ", data.Skip(55).Take(3));
+
+            return options;
+        }
     }
 }
