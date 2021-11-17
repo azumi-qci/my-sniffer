@@ -310,7 +310,7 @@ namespace MySniffer.Classes
             int decData = Convert.ToInt32(binayData, 2);
             int headerLength = decData * 4;
 
-            return string.Format("{0} ({1}x4 = {2} bytes)", binayData, decData, headerLength);
+            return string.Format("{0} - {1}x4 = {2} bytes", binayData, decData, headerLength);
         }
 
         public string getTCPReservedBits()
