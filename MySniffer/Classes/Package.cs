@@ -414,12 +414,19 @@ namespace MySniffer.Classes
             string sequence = getSequenceNumberHex().Substring(2, 1);
             string synFlag = getTCPSYNFlag();
 
-            if (synFlag == "1")
+            try
             {
-                return Convert.ToInt32(sequence) + 1;
-            }
+                if (synFlag == "1")
+                {
+                    return Convert.ToInt32(sequence) + 1;
+                }
 
-            return Convert.ToInt32(sequence);
+                return Convert.ToInt32(sequence);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public int getTCPConfirmationNumberData()
@@ -427,12 +434,19 @@ namespace MySniffer.Classes
             string confirmation = getConfirmationNumberHex().Substring(2, 1);
             string ackFlag = getTCPACKFlag();
 
-            if (ackFlag == "1")
+            try
             {
-                return Convert.ToInt32(confirmation) + 1;
-            }
+                if (ackFlag == "1")
+                {
+                    return Convert.ToInt32(confirmation) + 1;
+                }
 
-            return Convert.ToInt32(confirmation);
+                return Convert.ToInt32(confirmation);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         public string getTCPUrgent()
