@@ -9,18 +9,33 @@ namespace MySniffer.Classes
         private List<string> data = new List<string>();
         private List<string> completeLines = new List<string>();
 
-        public Package(string[] data)
+        public Package(string[] data, bool isRaw = false)
         {
+            int debugIndex = 1;
             // Remove the beggining of the line
             for (int i = 0; i < data.Length; i++)
             {
-                data[i] = data[i].Substring(6);
+                if (!isRaw)
+                {
+                    data[i] = data[i].Substring(6);
+                }
+
                 completeLines.Add(data[i]);
 
                 string[] dividedLine = data[i].Split(' ');
 
+
                 for (int j = 0; j < dividedLine.Length; j++)
                 {
+                    if (string.IsNullOrWhiteSpace(dividedLine[j]))
+                    {
+                        continue;
+                    }
+
+                    // DEBUGGING !!!!!!!!!
+                    Console.WriteLine(string.Format("{0} {1}", debugIndex, dividedLine[j]));
+                    debugIndex++;
+
                     this.data.Add(dividedLine[j]);
                 }
             }
@@ -76,24 +91,24 @@ namespace MySniffer.Classes
 
         public int getPackageLength()
         {
-            string hexValue = string.Join("", data.Skip(17).Take(2));
+            string hexValue = string.Join("", data.Skip(16).Take(2));
 
             return Convert.ToInt32(hexValue, 16);
         }
 
         public string getPackageLengthHexValue()
         {
-            return "0x" + string.Join("", data.Skip(17).Take(2));
+            return "0x" + string.Join("", data.Skip(16).Take(2));
         }
 
         public string getPackageIdentification()
         {
-            return "0x" + string.Join("", data.Skip(19).Take(2));
+            return "0x" + string.Join("", data.Skip(18).Take(2));
         }
 
         public string getFlags(bool returnAllValue = false)
         {
-            string hexValue = data.Skip(21).Take(1).First();
+            string hexValue = data.Skip(20).Take(1).First();
 
             string binaryString = Convert.ToString(Convert.ToInt32(hexValue, 16), 2);
 
@@ -108,7 +123,7 @@ namespace MySniffer.Classes
         public string getFragmentation()
         {
             string flags = getFlags(true);
-            string hexValue = string.Join("", data.Skip(22).Take(1));
+            string hexValue = string.Join("", data.Skip(21).Take(1));
 
             string binaryString = string.Join(string.Empty, hexValue.Select(
                 c => Convert.ToString(Convert.ToInt32(c.ToString(), 16), 2)
@@ -119,12 +134,12 @@ namespace MySniffer.Classes
 
         public string getLifestampHexValue()
         {
-            return "0x" + data.Skip(23).Take(1).First();
+            return "0x" + data.Skip(22).Take(1).First();
         }
 
         public int getLifestamp()
         {
-            string hexValue = data.Skip(23).Take(1).First();
+            string hexValue = data.Skip(22).Take(1).First();
 
             string binaryString = Convert.ToString(Convert.ToInt32(hexValue, 16), 10);
 
@@ -133,29 +148,29 @@ namespace MySniffer.Classes
 
         public string getProtocol()
         {
-            return data.Skip(24).Take(1).First();
+            return data.Skip(23).Take(1).First();
         }
 
         public string getChecksum()
         {
-            return "0x" + string.Join("", data.Skip(25).Take(2));
+            return "0x" + string.Join("", data.Skip(24).Take(2));
         }
 
         public string getCalculatedChecksum()
         {
             // Pseudoheader
-            int ipOrigin1 = Convert.ToInt32(string.Join("", data.Skip(27).Take(2)), 16);
-            int ipOrigin2 = Convert.ToInt32(string.Join("", data.Skip(29).Take(2)), 16);
-            int ipDestination1 = Convert.ToInt32(string.Join("", data.Skip(31).Take(2)), 16);
-            int ipDestination2 = Convert.ToInt32(string.Join("", data.Skip(33).Take(2)), 16);
+            int ipOrigin1 = Convert.ToInt32(string.Join("", data.Skip(26).Take(2)), 16);
+            int ipOrigin2 = Convert.ToInt32(string.Join("", data.Skip(28).Take(2)), 16);
+            int ipDestination1 = Convert.ToInt32(string.Join("", data.Skip(30).Take(2)), 16);
+            int ipDestination2 = Convert.ToInt32(string.Join("", data.Skip(32).Take(2)), 16);
             int protocol = Convert.ToInt32("00" + getProtocol(), 16);
-            int tcpLength = Convert.ToInt32(data.Skip(35).Count().ToString(), 10);
+            int tcpLength = Convert.ToInt32(data.Skip(34).Count().ToString(), 10);
 
             int firstAddition = ~(ipOrigin1 + ipOrigin2 + ipDestination1 + ipDestination2 + protocol + tcpLength);
 
             // TCP Header
             int tcpAddition = 0;
-            int currentByte = 35;
+            int currentByte = 34;
 
             for (int i = currentByte; i < 58; i += 2)
             {
@@ -163,10 +178,20 @@ namespace MySniffer.Classes
 
                 if (i >= 57)
                 {
-                    pairOfBytes = pairOfBytes.Remove(2, 2);
+                    try
+                    {
+                        pairOfBytes = pairOfBytes.Remove(2, 2);
+                    }
+                    catch
+                    {
+                        pairOfBytes = "";
+                    }
                 }
 
-                tcpAddition += Convert.ToInt32(pairOfBytes, 16);
+                if (!string.IsNullOrEmpty(pairOfBytes))
+                {
+                    tcpAddition += Convert.ToInt32(pairOfBytes, 16);
+                }
 
                 currentByte += 2;
             }
@@ -192,18 +217,18 @@ namespace MySniffer.Classes
 
         public string getOriginIPHex()
         {
-            return string.Join(".", data.Skip(27).Take(4));
+            return string.Join(".", data.Skip(26).Take(4));
         }
 
         public string getDestinationIPHex()
         {
-            return string.Join(".", data.Skip(31).Take(4));
+            return string.Join(".", data.Skip(30).Take(4));
         }
 
         public string getOriginIPDec()
         {
             string[] ipDataDec = new string[4];
-            string[] ipData = data.Skip(27).Take(4).ToArray();
+            string[] ipData = data.Skip(26).Take(4).ToArray();
 
             for (int i = 0; i < ipData.Length; i++)
             {
@@ -216,7 +241,7 @@ namespace MySniffer.Classes
         public string getDestinationIPDec()
         {
             string[] ipDataDec = new string[4];
-            string[] ipData = data.Skip(31).Take(4).ToArray();
+            string[] ipData = data.Skip(30).Take(4).ToArray();
 
             for (int i = 0; i < ipData.Length; i++)
             {
@@ -228,55 +253,55 @@ namespace MySniffer.Classes
 
         public string getOriginPortHex()
         {
-            return "0x" + string.Join("", data.Skip(35).Take(2));
+            return "0x" + string.Join("", data.Skip(34).Take(2));
         }
 
         public string getOriginPortDec()
         {
-            string port = string.Join("", data.Skip(35).Take(2));
+            string port = string.Join("", data.Skip(34).Take(2));
 
             return Convert.ToString(Convert.ToInt32(port, 16), 10);
         }
 
         public string getDestinationPortHex()
         {
-            return "0x" + string.Join("", data.Skip(37).Take(2));
+            return "0x" + string.Join("", data.Skip(36).Take(2));
         }
 
         public string getDestinationPortDec()
         {
-            string port = string.Join("", data.Skip(37).Take(2));
+            string port = string.Join("", data.Skip(36).Take(2));
 
             return Convert.ToString(Convert.ToInt32(port, 16), 10);
         }
 
         public string getSequenceNumberHex()
         {
-            return "0x" + string.Join("", data.Skip(39).Take(4));
+            return "0x" + string.Join("", data.Skip(38).Take(4));
         }
 
         public string getSequenceNumberDec()
         {
-            string sequence = string.Join("", data.Skip(39).Take(4));
+            string sequence = string.Join("", data.Skip(38).Take(4));
 
             return Convert.ToString(Convert.ToInt32(sequence, 16), 10);
         }
 
         public string getConfirmationNumberHex()
         {
-            return "0x" + string.Join("", data.Skip(43).Take(4));
+            return "0x" + string.Join("", data.Skip(42).Take(4));
         }
 
         public string getConfirmationNumberDec()
         {
-            string confirmation = string.Join("", data.Skip(43).Take(4));
+            string confirmation = string.Join("", data.Skip(42).Take(4));
 
             return Convert.ToString(Convert.ToInt32(confirmation, 16), 10);
         }
 
         public string getTCPHeaderLength()
         {
-            string hexData = string.Join("", data.Skip(47).Take(1));
+            string hexData = string.Join("", data.Skip(46).Take(1));
             string binayData = Convert.ToString(Convert.ToInt32(hexData, 16), 2);
 
             // Fill with zeroes
@@ -290,10 +315,10 @@ namespace MySniffer.Classes
 
         public string getTCPReservedBits()
         {
-            string hexData = string.Join("", data.Skip(47).Take(1));
+            string hexData = string.Join("", data.Skip(46).Take(1));
             string binayData = Convert.ToString(Convert.ToInt32(hexData, 16), 2);
 
-            string secondHexData = string.Join("", data.Skip(48).Take(1));
+            string secondHexData = string.Join("", data.Skip(47).Take(1));
             string secondBinaryData = Convert.ToString(Convert.ToInt32(secondHexData, 16), 2);
 
             // Fill with zeroes
@@ -304,7 +329,7 @@ namespace MySniffer.Classes
 
         public string getTCPFlags(bool inBinary = false)
         {
-            string hexData = string.Join("", data.Skip(47).Take(2));
+            string hexData = string.Join("", data.Skip(46).Take(2));
 
             string realData = hexData.Substring(1);
 
@@ -370,7 +395,7 @@ namespace MySniffer.Classes
 
         public string getTCPWindowSize()
         {
-            string hexData = string.Join("", data.Skip(49).Take(2));
+            string hexData = string.Join("", data.Skip(48).Take(2));
 
             string decimalData = Convert.ToString(Convert.ToInt32(hexData, 16), 10);
 
@@ -379,7 +404,7 @@ namespace MySniffer.Classes
 
         public string getTCPVerifiedChecksum()
         {
-            string hexData = string.Join("", data.Skip(51).Take(2));
+            string hexData = string.Join("", data.Skip(50).Take(2));
 
             return string.Format("0x{0}", hexData);
         }
@@ -412,14 +437,14 @@ namespace MySniffer.Classes
 
         public string getTCPUrgent()
         {
-            string urgentPoint = string.Join("", data.Skip(53).Take(2));
+            string urgentPoint = string.Join("", data.Skip(52).Take(2));
 
             return string.Format("0x{0}", urgentPoint);
         }
 
         public string getTCPOptions()
         {
-            string options = string.Join(" ", data.Skip(55).Take(3));
+            string options = string.Join(" ", data.Skip(54).Take(3));
 
             return options;
         }

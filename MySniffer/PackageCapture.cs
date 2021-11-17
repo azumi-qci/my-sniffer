@@ -2,6 +2,7 @@
 using PcapDotNet.Packets;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -9,12 +10,15 @@ namespace MySniffer
 {
     public partial class PackageCapture : Form
     {
+        public string selectedPacketData;
+
         int packetCount;
         int selectedPacketIndex;
         SelectInterface selectInterface;
         List<Packet> myPackets;
         // My threads
         Thread packetThread;
+
 
         public PackageCapture(SelectInterface selectInterface)
         {
@@ -39,8 +43,6 @@ namespace MySniffer
         {
             int selectedInterfaceIndex = selectInterface.selectedIndex;
 
-            Console.WriteLine("Interfaz con indice: " + selectedInterfaceIndex);
-
             IList<LivePacketDevice> allDevices = LivePacketDevice.AllLocalMachine;
 
             PacketDevice selectedDevice = allDevices[selectedInterfaceIndex];
@@ -48,6 +50,7 @@ namespace MySniffer
             // Open the device
             using (PacketCommunicator communicator = selectedDevice.Open(65536, PacketDeviceOpenAttributes.Promiscuous, 1000))
             {
+                communicator.SetFilter("ip and tcp");
                 communicator.ReceivePackets(0, PacketHandler);
             }
         }
@@ -114,7 +117,15 @@ namespace MySniffer
             if (selectedPacket.Ethernet.IpV4.Protocol.ToString().ToUpper() != "TCP")
             {
                 MessageBox.Show("El paquete seleccionado no es TCP", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            selectedPacketData = selectedPacket.IpV4.ToHexadecimalString().ToUpper();
+            selectedPacketData = Regex.Replace(selectedPacketData, "..", "$0 ");
+
+            // Open the packet analizer
+            PackageAnalizer packageAnalizer = new PackageAnalizer(this);
+            packageAnalizer.ShowDialog();
         }
     }
 }

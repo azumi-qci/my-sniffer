@@ -11,18 +11,32 @@ namespace MySniffer
         private string dumpPath = "tramaenhexdump.txt";
         private Package package;
 
-        public PackageAnalizer()
+        private PackageCapture packageCapture;
+
+        public PackageAnalizer(PackageCapture packageCapture = null)
         {
             InitializeComponent();
+
+            this.packageCapture = packageCapture;
         }
 
         private void PackageAnalizer_Load(object sender, EventArgs e)
         {
+
             if (File.Exists(dumpPath))
             {
-                string[] data = File.ReadAllLines(dumpPath);
+                string[] data;
 
-                package = new Package(data);
+                if (packageCapture != null)
+                {
+                    data = new string[] { packageCapture.selectedPacketData };
+                }
+                else
+                {
+                    data = File.ReadAllLines(dumpPath);
+                }
+
+                package = new Package(data, packageCapture != null);
 
                 // Show data in the form
                 packageTb.Lines = package.getFileData().ToArray();
