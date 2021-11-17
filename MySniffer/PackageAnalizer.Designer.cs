@@ -605,7 +605,7 @@ namespace MySniffer
             this.MaximizeBox = false;
             this.Name = "PackageAnalizer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cabecera Ethernet | Mi sniffer";
+            this.Text = "Cabecera Ethernet | Sniffer";
             this.Load += new System.EventHandler(this.PackageAnalizer_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -605,7 +605,7 @@ namespace MySniffer
             this.MinimizeBox = false;
             this.Name = "TCPInfo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Cabecera TCP | Mi sniffer";
+            this.Text = "Cabecera TCP | Sniffer";
             this.Load += new System.EventHandler(this.TCPInfo_Load);
             this.groupBox17.ResumeLayout(false);
             this.groupBox17.PerformLayout();

@@ -19,5 +19,11 @@ namespace MySniffer
             PackageAnalizer packageAnalizer = new PackageAnalizer();
             packageAnalizer.ShowDialog();
         }
+
+        private void wlanBtn_Click(object sender, System.EventArgs e)
+        {
+            SelectInterface selectInterface = new SelectInterface();
+            selectInterface.ShowDialog();
+        }
     }
 }
