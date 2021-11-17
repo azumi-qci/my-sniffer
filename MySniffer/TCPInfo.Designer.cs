@@ -73,6 +73,8 @@ namespace MySniffer
             this.windowSizeTb = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.verifiedChecksumTb = new System.Windows.Forms.TextBox();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.calculatedChecksumTb = new System.Windows.Forms.TextBox();
             this.groupBox17.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -84,6 +86,7 @@ namespace MySniffer
             this.groupBox8.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox17
@@ -515,11 +518,31 @@ namespace MySniffer
             this.verifiedChecksumTb.Size = new System.Drawing.Size(181, 26);
             this.verifiedChecksumTb.TabIndex = 1;
             // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.calculatedChecksumTb);
+            this.groupBox11.Location = new System.Drawing.Point(809, 132);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(193, 54);
+            this.groupBox11.TabIndex = 19;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Checksum (Calculado)";
+            // 
+            // calculatedChecksumTb
+            // 
+            this.calculatedChecksumTb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.calculatedChecksumTb.Location = new System.Drawing.Point(6, 19);
+            this.calculatedChecksumTb.Name = "calculatedChecksumTb";
+            this.calculatedChecksumTb.ReadOnly = true;
+            this.calculatedChecksumTb.Size = new System.Drawing.Size(181, 26);
+            this.calculatedChecksumTb.TabIndex = 1;
+            // 
             // TCPInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 325);
+            this.Controls.Add(this.groupBox11);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.groupBox8);
@@ -560,6 +583,8 @@ namespace MySniffer
             this.groupBox9.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -610,5 +635,7 @@ namespace MySniffer
         private System.Windows.Forms.TextBox windowSizeTb;
         private System.Windows.Forms.GroupBox groupBox10;
         private System.Windows.Forms.TextBox verifiedChecksumTb;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.TextBox calculatedChecksumTb;
     }
 }

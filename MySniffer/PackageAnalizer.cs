@@ -153,22 +153,22 @@ namespace MySniffer
 
         public string getTCPOriginPort()
         {
-            return package.getOriginPortHex() + ", " + package.getOriginPortDec();
+            return package.getOriginPortHex() + " - " + package.getOriginPortDec();
         }
 
         public string getTCPDestinationPort()
         {
-            return package.getDestinationPortHex() + ", " + package.getDestinationPortDec();
+            return package.getDestinationPortHex() + " - " + package.getDestinationPortDec();
         }
 
         public string getTCPSequenceNumberRaw()
         {
-            return package.getSequenceNumberHex() + ", " + package.getSequenceNumberDec();
+            return package.getSequenceNumberHex() + " - " + package.getSequenceNumberDec();
         }
 
         public string getTCPConfirmationNumberRaw()
         {
-            return package.getConfirmationNumberHex() + ", " + package.getConfirmationNumberDec();
+            return package.getConfirmationNumberHex() + " - " + package.getConfirmationNumberDec();
         }
 
         public string getTCPHeaderLength()
