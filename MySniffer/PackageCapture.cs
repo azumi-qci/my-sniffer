@@ -9,7 +9,10 @@ namespace MySniffer
 {
     public partial class PackageCapture : Form
     {
+        int packetCount;
+        int selectedPacketIndex;
         SelectInterface selectInterface;
+        List<Packet> myPackets;
         // My threads
         Thread packetThread;
 
@@ -18,6 +21,11 @@ namespace MySniffer
             InitializeComponent();
 
             this.selectInterface = selectInterface;
+
+            // Instanciate values
+            selectedPacketIndex = 0;
+            packetCount = 0;
+            myPackets = new List<Packet>();
         }
 
         private void PackageCapture_Load(object sender, EventArgs e)
@@ -44,9 +52,30 @@ namespace MySniffer
             }
         }
 
-        private static void PacketHandler(Packet packet)
+        private void PacketHandler(Packet packet)
         {
-            Console.WriteLine(packet.Timestamp.ToString("yyyy-MM-dd hh:mm:ss.fff") + " length:" + packet.Length);
+            // Add packet to list
+            myPackets.Add(packet);
+            // Show packet in list box
+            if (captureLb.InvokeRequired)
+            {
+                captureLb.Invoke(new MethodInvoker(delegate
+                {
+                    captureLb.Items.Add(string.Format("{0} \t {1} \t {2} \t {3} \t {4}",
+                        packetCount,
+                        packet.Ethernet.IpV4.Source,
+                        packet.Ethernet.IpV4.Destination,
+                        packet.Ethernet.IpV4.Protocol.ToString().ToUpper(),
+                        packet.Ethernet.IpV4.Length
+                    ));
+                }));
+            }
+            else
+            {
+                captureLb.Items.Add(string.Format("{0} | {1} ", packetCount, packet.Ethernet.IpV4.Source));
+            }
+
+            packetCount++;
         }
 
         private void PackageCapture_FormClosed(object sender, FormClosedEventArgs e)
@@ -54,6 +83,37 @@ namespace MySniffer
             if (packetThread.IsAlive)
             {
                 packetThread.Abort();
+            }
+        }
+
+        private void stopThreadBtn_Click(object sender, EventArgs e)
+        {
+            if (packetThread.IsAlive)
+            {
+                packetThread.Abort();
+            }
+
+            stopThreadBtn.Enabled = false;
+        }
+
+        private void captureLb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!selectPacketBtn.Enabled)
+            {
+                selectPacketBtn.Enabled = true;
+            }
+
+            // Set selected index
+            selectedPacketIndex = captureLb.SelectedIndex;
+        }
+
+        private void selectPacketBtn_Click(object sender, EventArgs e)
+        {
+            Packet selectedPacket = myPackets[selectedPacketIndex];
+
+            if (selectedPacket.Ethernet.IpV4.Protocol.ToString().ToUpper() != "TCP")
+            {
+                MessageBox.Show("El paquete seleccionado no es TCP", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
