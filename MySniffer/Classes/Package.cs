@@ -32,8 +32,6 @@ namespace MySniffer.Classes
                         continue;
                     }
 
-                    // DEBUGGING !!!!!!!!!
-                    Console.WriteLine(string.Format("{0} {1}", debugIndex, dividedLine[j]));
                     debugIndex++;
 
                     this.data.Add(dividedLine[j]);
@@ -159,60 +157,45 @@ namespace MySniffer.Classes
         public string getCalculatedChecksum()
         {
             // Pseudoheader
-            int ipOrigin1 = Convert.ToInt32(string.Join("", data.Skip(26).Take(2)), 16);
-            int ipOrigin2 = Convert.ToInt32(string.Join("", data.Skip(28).Take(2)), 16);
-            int ipDestination1 = Convert.ToInt32(string.Join("", data.Skip(30).Take(2)), 16);
-            int ipDestination2 = Convert.ToInt32(string.Join("", data.Skip(32).Take(2)), 16);
-            int protocol = Convert.ToInt32("00" + getProtocol(), 16);
-            int tcpLength = Convert.ToInt32(data.Skip(34).Count().ToString(), 10);
+            int partOne1 = Convert.ToInt32(string.Join("", data.Skip(14).Take(2)), 16);
+            int partOne2 = Convert.ToInt32(string.Join("", data.Skip(16).Take(2)), 16);
+            int partOne3 = Convert.ToInt32(string.Join("", data.Skip(18).Take(2)), 16);
+            int partOne4 = Convert.ToInt32(string.Join("", data.Skip(20).Take(2)), 16);
+            int partOne5 = Convert.ToInt32(string.Join("", data.Skip(22).Take(2)), 16);
 
-            int firstAddition = ~(ipOrigin1 + ipOrigin2 + ipDestination1 + ipDestination2 + protocol + tcpLength);
+            int firstAddition = (partOne1 + partOne2 + partOne3 + partOne4 + partOne5);
 
-            // TCP Header
-            int tcpAddition = 0;
-            int currentByte = 34;
+            int partTwo1 = Convert.ToInt32(string.Join("", data.Skip(26).Take(2)), 16);
+            int partTwo2 = Convert.ToInt32(string.Join("", data.Skip(28).Take(2)), 16);
+            int partTwo3 = Convert.ToInt32(string.Join("", data.Skip(30).Take(2)), 16);
+            int partTwo4 = Convert.ToInt32(string.Join("", data.Skip(32).Take(2)), 16);
 
-            for (int i = currentByte; i < 58; i += 2)
+            int secondAddition = (partTwo1 + partTwo2 + partTwo3 + partTwo4);
+
+            string partialResultText = Convert.ToString(firstAddition + secondAddition, 16);
+
+            int partialResult = Convert.ToInt32(partialResultText.Substring(1), 16) + Convert.ToInt32(partialResultText.Substring(0, 1));
+
+            char[] dividedPartialResult = Convert.ToString(partialResult, 2).PadLeft(16, '0').ToArray();
+            char[] dividedResult = new char[dividedPartialResult.Length];
+
+            for (int i = 0; i < dividedPartialResult.Length; i++)
             {
-                string pairOfBytes = string.Join("", data.Skip(currentByte).Take(2));
-
-                if (i >= 57)
+                if (dividedPartialResult[i] == '0')
                 {
-                    try
-                    {
-                        pairOfBytes = pairOfBytes.Remove(2, 2);
-                    }
-                    catch
-                    {
-                        pairOfBytes = "";
-                    }
+                    dividedResult[i] = '1';
                 }
-
-                if (!string.IsNullOrEmpty(pairOfBytes))
+                else
                 {
-                    tcpAddition += Convert.ToInt32(pairOfBytes, 16);
+                    dividedResult[i] = '0';
                 }
-
-                currentByte += 2;
             }
 
-            tcpAddition = ~tcpAddition;
+            int result = Convert.ToInt32(new string(dividedResult), 2);
 
-            // Data
-            int dataAddition = 0;
+            string hexResult = Convert.ToString(result, 16).ToUpper();
 
-            for (int i = currentByte; i < data.Count(); i += 2)
-            {
-                string pairOfBytes = string.Join("", data.Skip(currentByte).Take(2));
-
-                tcpAddition += Convert.ToInt32(pairOfBytes, 16);
-            }
-
-            dataAddition = ~dataAddition;
-
-            string result = Convert.ToString(firstAddition + tcpAddition + dataAddition, 2);
-
-            return "0x" + Convert.ToString(Convert.ToInt32(result, 2), 16).ToUpper();
+            return string.Format("0x{0}", hexResult);
         }
 
         public string getOriginIPHex()
