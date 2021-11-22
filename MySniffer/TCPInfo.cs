@@ -44,6 +44,7 @@ namespace MySniffer
 
             windowSizeTb.Text = packageAnalizer.getTCPWindowSize();
             verifiedChecksumTb.Text = packageAnalizer.getTCPVerifiedChecksum();
+            calculatedChecksumTb.Text = packageAnalizer.getTCPCalculatedChecksum();
             urgentTb.Text = packageAnalizer.getTCPUrgent();
             optionsTb.Text = packageAnalizer.getTCPOptions();
         }

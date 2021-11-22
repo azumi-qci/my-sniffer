@@ -306,6 +306,11 @@ namespace MySniffer
             return package.getTCPVerifiedChecksum();
         }
 
+        public string getTCPCalculatedChecksum()
+        {
+            return package.getTCPCalculatedChecksum();
+        }
+
         public int getTCPSequenceNumber()
         {
             return package.getTCPSequenceNumberData();

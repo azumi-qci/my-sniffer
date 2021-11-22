@@ -393,6 +393,93 @@ namespace MySniffer.Classes
             return string.Format("0x{0}", hexData);
         }
 
+        public string getTCPCalculatedChecksum()
+        {
+            int pseudoHeader1 = Convert.ToInt32(string.Join("", data.Skip(26).Take(2)), 16);
+            int pseudoHeader2 = Convert.ToInt32(string.Join("", data.Skip(28).Take(2)), 16);
+            int pseudoHeader3 = Convert.ToInt32(string.Join("", data.Skip(30).Take(2)), 16);
+            int pseudoHeader4 = Convert.ToInt32(string.Join("", data.Skip(32).Take(2)), 16);
+            int pseudoHeader5 = Convert.ToInt32(string.Join("", data.Skip(34).Take(2)), 16);
+            int pseudoHeader6 = 6 + Convert.ToInt32(data.Skip(46).ToArray().Length);
+
+            int pseudoHeaderResult = (pseudoHeader1 + pseudoHeader2 + pseudoHeader3 + pseudoHeader4 + pseudoHeader5 + pseudoHeader6) + 1;
+
+            int header12, header13, header14;
+
+            int header1 = Convert.ToInt32(string.Join("", data.Skip(34).Take(2)), 16);
+            int header2 = Convert.ToInt32(string.Join("", data.Skip(36).Take(2)), 16);
+            int header3 = Convert.ToInt32(string.Join("", data.Skip(38).Take(2)), 16);
+            int header4 = Convert.ToInt32(string.Join("", data.Skip(40).Take(2)), 16);
+            int header5 = Convert.ToInt32(string.Join("", data.Skip(42).Take(2)), 16);
+            int header6 = Convert.ToInt32(string.Join("", data.Skip(44).Take(2)), 16);
+            int header7 = Convert.ToInt32(string.Join("", data.Skip(46).Take(2)), 16);
+            int header8 = Convert.ToInt32(string.Join("", data.Skip(46).Take(2)), 16);
+            int header9 = Convert.ToInt32(string.Join("", data.Skip(48).Take(2)), 16);
+            int header10 = Convert.ToInt32(string.Join("", data.Skip(50).Take(2)), 16);
+            int header11 = Convert.ToInt32(string.Join("", data.Skip(52).Take(2)), 16);
+            try { header12 = Convert.ToInt32(string.Join("", data.Skip(54).Take(2)), 16); } catch { header12 = 0; }
+            try { header13 = Convert.ToInt32(string.Join("", data.Skip(56).Take(2)), 16); } catch { header13 = 0; }
+            try { header14 = Convert.ToInt32(string.Join("", data.Skip(58).Take(2)), 16); } catch { header14 = 0; }
+
+            int headerResult = (header1 +
+                header2 +
+                header3 +
+                header4 +
+                header5 +
+                header6 +
+                header7 +
+                header7 +
+                header8 +
+                header9 +
+                header10 +
+                header11 +
+                header12 +
+                header13 +
+                header14) + 1;
+
+            int dataResult = 0;
+
+            for (int i = 57; i < data.Count; i += 2)
+            {
+                string hexNumber = "";
+
+                try
+                {
+                    hexNumber += data.Skip(i - 1).Take(1).First();
+                    hexNumber += data.Skip(i).Take(1).First();
+                }
+                catch
+                {
+                    hexNumber = hexNumber.PadLeft(4, '0');
+                }
+
+                dataResult += Convert.ToInt32(hexNumber, 16);
+            }
+
+            int tempResult = pseudoHeaderResult + headerResult + dataResult;
+
+            char[] dividedPartialResult = Convert.ToString(tempResult, 2).PadLeft(16, '0').ToArray();
+            char[] dividedResult = new char[dividedPartialResult.Length];
+
+            for (int i = 0; i < dividedPartialResult.Length; i++)
+            {
+                if (dividedPartialResult[i] == '0')
+                {
+                    dividedResult[i] = '1';
+                }
+                else
+                {
+                    dividedResult[i] = '0';
+                }
+            }
+
+            int result = Convert.ToInt32(new string(dividedResult), 2);
+
+            string hexResult = Convert.ToString(result, 16).ToUpper();
+
+            return string.Format("0x{0}", hexResult);
+        }
+
         public int getTCPSequenceNumberData()
         {
             string sequence = getSequenceNumberHex().Substring(2, 1);
