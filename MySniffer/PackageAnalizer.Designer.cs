@@ -78,6 +78,7 @@ namespace MySniffer
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.checksumResultTb = new System.Windows.Forms.TextBox();
             this.showTCPInfoBtn = new System.Windows.Forms.Button();
+            this.savePacketBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -567,17 +568,29 @@ namespace MySniffer
             this.showTCPInfoBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showTCPInfoBtn.Location = new System.Drawing.Point(409, 477);
             this.showTCPInfoBtn.Name = "showTCPInfoBtn";
-            this.showTCPInfoBtn.Size = new System.Drawing.Size(386, 83);
+            this.showTCPInfoBtn.Size = new System.Drawing.Size(194, 83);
             this.showTCPInfoBtn.TabIndex = 12;
             this.showTCPInfoBtn.Text = "Ver cabecera TCP";
             this.showTCPInfoBtn.UseVisualStyleBackColor = true;
             this.showTCPInfoBtn.Click += new System.EventHandler(this.showTCPInfoBtn_Click);
+            // 
+            // savePacketBtn
+            // 
+            this.savePacketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.savePacketBtn.Location = new System.Drawing.Point(608, 477);
+            this.savePacketBtn.Name = "savePacketBtn";
+            this.savePacketBtn.Size = new System.Drawing.Size(194, 83);
+            this.savePacketBtn.TabIndex = 13;
+            this.savePacketBtn.Text = "Guardar paquete";
+            this.savePacketBtn.UseVisualStyleBackColor = true;
+            this.savePacketBtn.Click += new System.EventHandler(this.savePacketBtn_Click);
             // 
             // PackageAnalizer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(813, 568);
+            this.Controls.Add(this.savePacketBtn);
             this.Controls.Add(this.showTCPInfoBtn);
             this.Controls.Add(this.groupBox21);
             this.Controls.Add(this.groupBox19);
@@ -705,5 +718,6 @@ namespace MySniffer
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.TextBox checksumResultTb;
         private System.Windows.Forms.Button showTCPInfoBtn;
+        private System.Windows.Forms.Button savePacketBtn;
     }
 }

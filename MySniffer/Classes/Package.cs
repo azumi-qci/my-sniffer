@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 namespace MySniffer.Classes
@@ -444,6 +445,47 @@ namespace MySniffer.Classes
             string options = string.Join(" ", data.Skip(54).Take(3));
 
             return options;
+        }
+
+        public void exportPacket()
+        {
+            int currentLine = 0;
+            string path = "./export.txt";
+
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                int currentIndex = 0;
+                bool ended = false;
+
+                while (true)
+                {
+                    sw.Write(string.Format("{0}  ", Convert.ToString(currentLine).PadLeft(4, '0')));
+
+                    for (int i = 0; i < 16; i++)
+                    {
+                        try
+                        {
+                            sw.Write(string.Format("{0} ", data[currentIndex]));
+                            currentIndex++;
+                        }
+                        catch
+                        {
+                            ended = true;
+                            break;
+                        }
+                    }
+
+                    sw.WriteLine("");
+                    currentLine += 10;
+
+                    if (ended)
+                    {
+                        break;
+                    }
+                }
+
+                sw.Close();
+            }
         }
     }
 }

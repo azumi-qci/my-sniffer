@@ -334,5 +334,12 @@ namespace MySniffer
         {
             return package.getTCPOptions();
         }
+
+        private void savePacketBtn_Click(object sender, EventArgs e)
+        {
+            package.exportPacket();
+
+            MessageBox.Show("Paquete exportado correctamente", "Paquete exportado", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
