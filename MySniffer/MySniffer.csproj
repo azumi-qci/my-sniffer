@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CapturedPacket.cs" />
     <Compile Include="Classes\Package.cs" />
     <Compile Include="Globals\MySnifferGlobals.cs" />
     <Compile Include="PackageAnalizer.cs">
